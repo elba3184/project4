@@ -26,7 +26,12 @@ const errHandler = err => {
 
 export default {
   service: service,
-
+  checkLogin() {
+    return service
+      .get('/checkLogin')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
   // This method is synchronous and returns true or false
   // To know if the user is connected, we just check if we have a value for localStorage.getItem('user')
   isLoggedIn() {
@@ -69,22 +74,6 @@ export default {
     localStorage.removeItem('user')
     return service.get('/logout')
   },
-
-  // This is an example on how to use this method in a different file
-  // api.getCountries().then(countries => { /* ... */ })
-  // getCountries() {
-  //   return service
-  //     .get('/countries')
-  //     .then(res => res.data)
-  //     .catch(errHandler)
-  // },
-
-  // addCountry(body) {
-  //   return service
-  //     .post('/countries', body)
-  //     .then(res => res.data)
-  //     .catch(errHandler)
-  // },
 
   getSecret() {
     return service

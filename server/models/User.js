@@ -4,6 +4,8 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
   username: String,
   password: String,
+  first_name: String,
+  last_name: String,
   email: String,
   profilePhoto: String,
   portfolio: String,
@@ -17,7 +19,7 @@ const userSchema = new Schema({
     ref: 'Artwork'
   }],
   location: String,
-  biography: String,
+  bio: String,
 }, {
   timestamps: {
     createdAt: 'created_at',

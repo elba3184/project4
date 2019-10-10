@@ -1,47 +1,82 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import api from '../../api';
+import { runInNewContext } from 'vm';
 
 class Profile extends Component {
   state = {
     error: null,
     isLoaded: false,
-    username: undefined,
-    name: undefined,
-    profile_img: undefined,
-    userInfo: ''
-  };
-
-  componentDidMount = () => {
-    this.getUser()
+    first_name: '',
+    last_name: '',
+    username: '',
+    email: '',
+    bio: '',
+    location: '',
+    userType: '',
+    profilePhoto: ''
   }
 
-  getUser = async (username) => {
-    username = "elbachimilio";
-    try {
-      const userInfo = await axios.get(`http://localhost:5000/api/users/${username}`)
-      this.setState({
-        userInfo,
-        isLoaded: true
-      })
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
-  showUserInfo = (userInfo) => {
-    console.log("====>Ddfkdgmdflgmdsfkgmdskgmsdf ===> ", userInfo)
-    console.log("THE TYPEOF USERINFO IS: ", typeof (userInfo))
-    let keys = Object.keys(userInfo)
-    let currentUser = keys.map((key, i) => {
-      console.log("IN CURRENT USER-keys", currentUser)
-      return typeof (userInfo[key]) == "object" ? <li>this is an object</li> : <li key={i}>{userInfo[key]}</li>
+  // getRandomPhoto = () => {
+  //   axios.get('http://localhost:5000/api/random-photo', { withCredentials: true })
+  //     .then(res => {
+  //       console.log(res.data)
+  //       // this.setState({
+  //       //   profilePhoto: 
+  //       // })
+  //     }).catch(err => console.log(err))
+  // }
+
+  async componentDidMount() {
+    let currentUser = await api.getLocalStorageUser()
+    // console.log(currentUser)
+    this.setState({
+      first_name: currentUser.first_name,
+      last_name: currentUser.last_name,
+      username: currentUser.username,
+      email: currentUser.email,
+      bio: currentUser.bio,
+      location: currentUser.location,
+      userType: currentUser.userType,
+      isLoaded: true
     })
-    return currentUser
-    // data: 
-    // key: {key}, 
+  }
+
+  showCard = () => {
+    return (
+      <div className="card">
+        <div className="card-image">
+          <figure className="image is-4by3">
+            <img src="../images/profile_1.jpeg" alt="Placeholder image" style={{ "width": "380px", height: "500px" }} />
+          </figure>
+        </div>
+        <div className="card-content">
+          <div className="media">
+            <div className="media-left">
+              <figure className="image is-48x48">
+                <img src="../images/profile_1.jpeg" alt="Placeholder image" />
+              </figure>
+            </div>
+            <div className="media-content">
+              <p className="title is-4">{this.state.first_name}</p>
+              <p className="subtitle is-6">{this.state.email}</p>
+              <p>You're a {this.state.userType}</p>
+            </div>
+          </div>
+
+          <div className="content">
+            {this.state.bio}.
+            <br />
+            <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   render() {
+
     const { error, isLoaded } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -49,12 +84,11 @@ class Profile extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <ul>
-          {this.showUserInfo(this.state.userInfo.data)}
-        </ul>
-        // <ul>
-        //   <li>{JSON.stringify(this.state.userInfo)}</li>
-        // </ul>
+        <div>
+          {this.getRandomPhoto()}
+          {this.showCard()}
+        </div>
+
       );
     }
   }
@@ -64,7 +98,9 @@ export default Profile;
 
 
 
-
+        // <ul>
+        //   <li>{JSON.stringify(this.state.userInfo)}</li>
+        // </ul>
 
 
 // const passport = require('passport')
@@ -95,3 +131,44 @@ export default Profile;
 //         })
 //         .catch(err => done(err))
 //     }
+
+
+
+  // getUser = async (username) => {
+  //   username = "elbachimilio";
+  //   try {
+  //     const userInfo = await axios.get(`http://localhost:5000/api/users/${username}`)
+  //     this.setState({
+  //       userInfo,
+  //       isLoaded: true
+  //     })
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
+
+  // getRandomPhoto = async () => {
+  //   try {
+  //     const randomPhoto = await axios.get(`http://localhost:5000/api/random-photo`)
+  //     this.setState({
+  //       randomPhoto,
+  //       isLoaded: true
+  //     })
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
+
+
+    // showUserInfo = (userInfo) => {
+  //   console.log("====>Ddfkdgmdflgmdsfkgmdskgmsdf ===> ", userInfo)
+  //   console.log("THE TYPEOF USERINFO IS: ", typeof (userInfo))
+  //   let keys = Object.keys(userInfo)
+  //   let currentUser = keys.map((key, i) => {
+  //     console.log("IN CURRENT USER-keys", currentUser)
+  //     return typeof (userInfo[key]) == "object" ? <li>this is an object</li> : <li key={i}>{userInfo[key]}</li>
+  //   })
+  //   return currentUser
+  //   // data: 
+  //   // key: {key}, 
+  // }

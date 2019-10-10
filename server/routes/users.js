@@ -22,4 +22,10 @@ router.get('/users/:username', (req, res, next) => {
     }).catch(err => next(err))
 })
 
+// router.get('/edit-user', (req, res, next) => {
+//     .then((response) => {
+//       res.json(response.data)
+//     }).catch(err => next(err))
+// })
+
 module.exports = router;

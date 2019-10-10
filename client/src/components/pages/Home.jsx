@@ -5,7 +5,8 @@ class Home extends Component {
     return (
       <div className="Home">
         <h2>Home</h2>
-        <p>This is a sample project with the MERN stack</p>
+        <p>Welcome to BLANK NAME HERE</p>
+        <p>The purpose of this project is to link creative people together</p>
       </div>
     )
   }
