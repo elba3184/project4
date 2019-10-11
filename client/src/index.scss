@@ -84,9 +84,21 @@ body {
 // --------------------
 // Style for Home component
 .Home {
+  body {
+    height: 100vh;
+    width: 100vw;
+    background: rgb(153,71,212);
+    background: linear-gradient(45deg, rgba(153,71,212,1) 0%, rgba(136,96,208,1) 13%, rgba(90,185,234,1) 58%, rgba(0,212,255,1) 94%);
+  }
   p {
+    font-family: Muli;
     font-size: 1.2em;
   }
+}
+
+.carosuel {
+  width: 100vw;
+  height: 100vh;
 }
 
 // --------------------

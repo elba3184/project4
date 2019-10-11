@@ -13,3 +13,9 @@ class Home extends Component {
 }
 
 export default Home;
+
+//#5680E9
+//#84CEEB
+//#5AB9EA
+//#C1C8E4
+//#8860D0

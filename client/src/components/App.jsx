@@ -7,6 +7,7 @@ import Signup from './pages/Signup'
 import api from '../api'
 // import logo from '../logo.svg'
 import Profile from './pages/Profile'
+import People from './pages/People'
 // import Navbar from './Navbar'
 // import { runInThisContext } from 'vm'
 
@@ -26,8 +27,6 @@ export default class App extends Component {
       this.setState({ user })
     })
   }
-
-
 
   handleLogoutClick(e) {
     api.logout().then(this.checkLogin)
@@ -58,6 +57,7 @@ export default class App extends Component {
                 <div className="navbar-start">
                   <a className="navbar-item">
                     <NavLink to="/">Home</NavLink>
+                    <NavLink to="/allUsers">Meet Others</NavLink>
                   </a>
                 </div>
                 {api.isLoggedIn() && (
@@ -88,8 +88,6 @@ export default class App extends Component {
             </nav>
           </div>
 
-
-
           {/* <NavLink to="/profile">Profile</NavLink> */}
         </header>
         <Switch>
@@ -98,13 +96,14 @@ export default class App extends Component {
           <Route path="/signup" component={(props) => <Signup checkLogin={this.checkLogin} {...props} />} />
           <Route path="/login" component={(props) => < Login checkLogin={this.checkLogin} {...props} />} />
           <Route path="/profile" component={(props) => < Profile {...props} />} />
+
+          <Route path="/allUsers" component={(props) => < People {...props} />} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>
     )
   }
 }
-
 
 {/* <img src={logo} className="App-logo" alt="logo" />
 <h1 className="App-title">MERN Boilerplate</h1> */}

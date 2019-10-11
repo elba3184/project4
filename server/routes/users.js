@@ -7,6 +7,8 @@ require('dotenv').config({
 const unsplash = require('unsplash-js');
 const router = express.Router();
 
+const User = require('../models/User')
+
 router.get('/unsplash', (req, res, next) => {
   axios.get(`https://api.unsplash.com/photos/?client_id=${process.env.UNSPLASH_ACCESSKEY}`)
     .then((response) => {
@@ -22,6 +24,21 @@ router.get('/users/:username', (req, res, next) => {
     }).catch(err => next(err))
 })
 
+router.get('/unsplash', (req, res, next) => {
+  axios.get(`https://api.unsplash.com/photos/?client_id=${process.env.UNSPLASH_ACCESSKEY}`)
+    .then((response) => {
+      res.json(response.data)
+    })
+
+})
+
+
+router.get('/profile/:id', (req, res, next) => {
+  let id = req.params.id
+  User.findById(id).then(user => {
+    res.json({ user })
+  }).catch(err => console.error(err))
+})
 // router.get('/edit-user', (req, res, next) => {
 //     .then((response) => {
 //       res.json(response.data)

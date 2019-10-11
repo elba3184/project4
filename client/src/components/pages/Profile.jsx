@@ -41,8 +41,7 @@ class Profile extends Component {
       profilePhoto: currentUser.profilePhoto,
       isLoaded: true
     })
-
-    this.getRandomPhoto()
+    // this.getRandomPhoto()
   }
 
   showCard = () => {

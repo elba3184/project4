@@ -10,6 +10,7 @@ const userSchema = new Schema({
   profilePhoto: String,
   portfolio: String,
   likes: Array,
+  liked: Array,
   userType: {
     type: String,
     enum: ['Photographer', 'Model', 'Stylist']
