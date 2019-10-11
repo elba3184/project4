@@ -17,16 +17,15 @@ class Profile extends Component {
     profilePhoto: ''
   }
 
-
-  // getRandomPhoto = () => {
-  //   axios.get('http://localhost:5000/api/random-photo', { withCredentials: true })
-  //     .then(res => {
-  //       console.log(res.data)
-  //       // this.setState({
-  //       //   profilePhoto: 
-  //       // })
-  //     }).catch(err => console.log(err))
-  // }
+  getRandomPhoto = () => {
+    axios.get('http://localhost:5000/api/random-photo', { withCredentials: true })
+      .then(res => {
+        let thePhoto = res.data.pic.urls.regular
+        this.setState({
+          profilePhoto: thePhoto
+        })
+      }).catch(err => console.log(err))
+  }
 
   async componentDidMount() {
     let currentUser = await api.getLocalStorageUser()
@@ -39,8 +38,11 @@ class Profile extends Component {
       bio: currentUser.bio,
       location: currentUser.location,
       userType: currentUser.userType,
+      profilePhoto: currentUser.profilePhoto,
       isLoaded: true
     })
+
+    this.getRandomPhoto()
   }
 
   showCard = () => {
@@ -48,7 +50,7 @@ class Profile extends Component {
       <div className="card">
         <div className="card-image">
           <figure className="image is-4by3">
-            <img src="../images/profile_1.jpeg" alt="Placeholder image" style={{ "width": "380px", height: "500px" }} />
+            <img src={this.state.profilePhoto} alt="Placeholder image" style={{ "width": "380px", height: "500px" }} />
           </figure>
         </div>
         <div className="card-content">
@@ -85,7 +87,7 @@ class Profile extends Component {
     } else {
       return (
         <div>
-          {this.getRandomPhoto()}
+          {/* <img src={this.getRandomPhoto()} /> */}
           {this.showCard()}
         </div>
 

@@ -3,7 +3,11 @@ const Schema = mongoose.Schema
 
 const artworkSchema = new Schema({
   url: String,
-  likes: Number
+  likes: Number,
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 }, {
   timestamps: {
     createdAt: 'created_at',

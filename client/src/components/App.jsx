@@ -94,6 +94,7 @@ export default class App extends Component {
         </header>
         <Switch>
           <Route path="/" exact component={(props) => <Home {...props} />} />
+          {/* <Route path="/matched" component= */}
           <Route path="/signup" component={(props) => <Signup checkLogin={this.checkLogin} {...props} />} />
           <Route path="/login" component={(props) => < Login checkLogin={this.checkLogin} {...props} />} />
           <Route path="/profile" component={(props) => < Profile {...props} />} />

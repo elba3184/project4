@@ -5,6 +5,8 @@ class Match extends Component {
     return (
       <div>
         You've matched with BLANK
+        Check out their portfolio
+        You can now message and book time with them.
       </div>
     )
   }
