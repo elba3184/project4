@@ -12,15 +12,25 @@ const logger = require('morgan')
 const nocache = require('nocache')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
-
+//database connection
+const Chat = require("./models/Chat");
+// const connect = require("./dbconnect");
 require('./configs/database')
+const dateTime = require("simple-datetime-formater");
+const chatRouter = require("./routes/chatroute");
+// const loginRouter = require("./routes/loginRoute");
+
+
+const app = express()
+
+
 
 const app_name = require('./package.json').name
 const debug = require('debug')(
   `${app_name}:${path.basename(__filename).split('.')[0]}`
 )
 
-const app = express()
+
 
 app.use(nocache())
 
@@ -58,9 +68,16 @@ app.use(
 )
 require('./passport')(app)
 
+
+
+
+
+
+
 app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))
 app.use('/api', require('./routes/users'))
+app.use("/chats", chatRouter);
 // app.use('/api/countries', require('./routes/countries'))
 
 // // For any routes that starts with "/api", catch 404 and forward to error handler
@@ -85,6 +102,55 @@ app.use((err, req, res, next) => {
       res.json(JSON.parse(JSON.stringify(err, Object.getOwnPropertyNames(err))))
   }
 })
+
+
+
+
+//require the http module
+const http = require("http").Server(app);
+
+// require the socket.io module
+const io = require("socket.io");
+const socket = io(http);
+
+//setup event listener
+socket.on("connection", socket => {
+  console.log("user connected");
+
+  socket.on("disconnect", function () {
+    console.log("user disconnected");
+  });
+
+  //Someone is typing
+  socket.on("typing", data => {
+    socket.broadcast.emit("notifyTyping", {
+      user: data.user,
+      message: data.message
+    });
+  });
+
+  //when soemone stops typing
+  socket.on("stopTyping", () => {
+    socket.broadcast.emit("notifyStopTyping");
+  });
+
+  socket.on("chat message", function (msg) {
+    console.log("message: " + msg);
+
+    //broadcast message to everyone in port:5000 except yourself.
+    socket.broadcast.emit("received", { message: msg });
+
+    //save chat to the database
+    connect.then(db => {
+      console.log("connected correctly to the server");
+      let chatMessage = new Chat({ message: msg, sender: "Anonymous" });
+
+      chatMessage.save();
+    });
+  });
+});
+
+
 
 module.exports = app
 

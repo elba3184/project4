@@ -2,11 +2,13 @@ const express = require('express')
 const axios = require('axios')
 const path = require('path')
 const User = require('../models/User')
-
+// const io = require('./SocketManager')
+const Unsplash = require('unsplash-js').default;
 require('dotenv').config({
   path: path.join(__dirname, '.env')
 })
-const Unsplash = require('unsplash-js').default;
+
+// io.connection('connection')
 
 const {
   isLoggedIn
@@ -41,24 +43,3 @@ router.get('/allUsers', (req, res, next) => {
 })
 
 module.exports = router;
-
-
-
-// router.get('/unsplash', (req, res, next) => {
-//   console.log("Route exists")
-//   console.log(process.env.UNSPLASH_ACCESSKEY)
-//   axios.get(`https://api.unsplash.com/photos/?client_id=${process.env.UNSPLASH_ACCESSKEY}`)
-//     .then((response) => {
-//       res.json(response.data)
-//     })
-// })
-
-// router.get('/users/:username', (req, res, next) => {
-//   let username = req.params.username
-
-//   axios.get(`https://api.unsplash.com/users/${username}/?client_id=${process.env.UNSPLASH_ACCESSKEY}`)
-//     .then((response) => {
-//       console.log("=====>>>>>", response)
-//       res.json(response.data)
-//     }).catch(err => next(err))
-// })

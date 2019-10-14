@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import api from '../../api'
-import axios from 'axios'
 
 class Signup extends Component {
   constructor(props) {
@@ -20,9 +19,10 @@ class Signup extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
-  handleInputChange(event) {
+  handleInputChange(e) {
+    console.log("Handle input change function: =====> ", e)
     this.setState({
-      [event.target.name]: event.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -51,25 +51,6 @@ class Signup extends Component {
       .catch(err => this.setState({ message: err.toString() }))
   }
 
-  getRandomPhoto = () => {
-    axios.get('http://localhost:5000/api/random-photo', { withCredentials: true })
-      .then(res => {
-        let thePhoto = res.data.pic.urls.regular
-        this.setState({
-          profilePhoto: thePhoto
-        })
-      }).catch(err => console.log(err))
-  }
-
-  fileSelectedHandler = (e) => {
-    console.log(e.target.files[0])
-  }
-
-  fileUploadHandler = (e) => {
-    this.setState({
-      artwork: e.tartget.files[0]
-    })
-  }
 
 
   displaySignup = () => {
@@ -149,23 +130,6 @@ class Signup extends Component {
           </div>
         </div>
 
-        <div class="file has-name is-fullwidth">
-          <label class="file-label">
-            <input class="file-input" type="file" name="portfolio" onChange={this.fileSelectedHandler} />
-            <span class="file-cta">
-              <span class="file-icon">
-                <i class="fas fa-upload"></i>
-              </span>
-              <span class="file-label">
-                Choose a file…
-      </span>
-            </span>
-            <span class="file-name">
-              SomePhoto.png
-    </span>
-            <button onClick={e => this.fileUploadHandler}>Add</button>
-          </label>
-        </div>
         <div className="field is-grouped">
           <div className="control">
             <button className="button is-link" onClick={e => this.handleClick(e)}>Submit</button>
@@ -185,7 +149,3 @@ class Signup extends Component {
 }
 
 export default Signup;
-
-
-//THIS IS THE VALUE FOR THE SELECTED TYPE OPTION
-// document.querySelector("#root > div > div > div > div:nth-child(5) > div > div > select").selectedOptions[0].innerHTML
