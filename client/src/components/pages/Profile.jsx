@@ -3,7 +3,6 @@ import axios from 'axios';
 import api from '../../api';
 import '../../styling/index.scss'
 import Modal from './Modal.jsx'
-import { Model } from 'mongoose';
 // import { runInNewContext } from 'vm';
 // import serverUrl from '../../configServer'
 
