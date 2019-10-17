@@ -4,7 +4,7 @@ import api from '../../api';
 import '../../styling/index.scss'
 import Modal from './Modal.jsx'
 // import { runInNewContext } from 'vm';
-// import serverUrl from '../../configServer'
+import serverUrl from '../../configServer'
 
 class Profile extends Component {
   state = {
@@ -74,7 +74,7 @@ class Profile extends Component {
   // }
 
   getRandomPhoto = () => {
-    axios.get('http://localhost:5000/api/random-photo', { withCredentials: true })
+    axios.get(`${serverUrl}/random-photo`, { withCredentials: true })
       .then(res => {
         let thePhoto = res.data.pic.urls.regular
         this.setState({

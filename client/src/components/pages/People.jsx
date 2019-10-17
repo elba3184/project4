@@ -3,7 +3,7 @@ import axios from 'axios';
 // import Carousel from 'react-bootstrap/Carousel'
 import Chat from './Chat';
 import '../../styling/index.scss'
-// import serverUrl from '../../configServer'
+import serverUrl from '../../configServer'
 
 class People extends Component {
 
@@ -23,7 +23,7 @@ class People extends Component {
   }
 
   showAllUsers = () => {
-    axios.get('http://localhost:5000/api/allUsers', { withCredentials: true })
+    axios.get(`${serverUrl}/allUsers`, { withCredentials: true })
       .then(res => {
         // console.log(res.data.allUsersFromDB)
         this.setState({
@@ -82,10 +82,10 @@ class People extends Component {
   render() {
     return (
       <div>
-        In People component
+        In People component???
         {this.showUserCards()}
-        {/* 
-        <Chat /> */}
+
+        <Chat />
       </div >
     )
   }

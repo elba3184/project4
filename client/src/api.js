@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { log } from 'util'
+// import serverUrl from 'configServer'
 // import Unsplash from 'unsplash-js';
 const path = require('path')
 require('dotenv').config({
@@ -9,7 +10,7 @@ require('dotenv').config({
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ?
     '/api'
-    : 'http://localhost:5000/api',
+    : `localhost:5000/api`,
 
   withCredentials: true,
 })
@@ -117,7 +118,7 @@ export default {
 
   saveNewThing(newThing) {
     // console.log('new thing is: ', newThing)
-    return service.post('/create-image', newThing)
+    return service.post('/things/create', newThing)
       .then(res => res.data)
       .catch(errHandler);
   }
