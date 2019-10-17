@@ -20,6 +20,7 @@ router.post('/signup', (req, res, next) => {
     email,
     userType,
     bio,
+    imageUrl
   } = req.body
   console.log("In post of signup====>", req.body)
   if (!username || !password) {
@@ -29,8 +30,8 @@ router.post('/signup', (req, res, next) => {
     return
   }
   User.findOne({
-      username
-    })
+    username
+  })
     .then(userDoc => {
       if (userDoc !== null) {
         res.status(409).json({
@@ -47,7 +48,8 @@ router.post('/signup', (req, res, next) => {
         last_name,
         email,
         userType,
-        bio
+        bio,
+        imageUrl
       })
       return newUser.save()
     })
@@ -65,15 +67,17 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) => {
+  console.log('trying to log in <<<<<<<<<<')
   const {
     username,
     password
   } = req.body
+  console.log('the req body ------------- ', req.body, username, password);
 
   // first check to see if there's a document with that username
   User.findOne({
-      username
-    })
+    username
+  })
     .then(userDoc => {
       // "userDoc" will be empty if the username is wrong (no document in database)
       if (!userDoc) {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import api from '../../api'
 import axios from 'axios'
+import service from '../../api';
 
 class Signup extends Component {
   constructor(props) {
@@ -14,15 +15,37 @@ class Signup extends Component {
       bio: '',
       location: '',
       userType: 'Photographer',
-      profilePhoto: '',
-      artwork: []
+      imageUrl: '',
+      artwork: [],
+      name: "",
+      description: "",
     }
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
-  handleInputChange(event) {
+  // this method handles just the file upload
+  handleFileUpload = e => {
+    console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+    uploadData.append("imageUrl", e.target.files[0]);
+    service.handleUpload(uploadData)
+      .then(response => {
+        // console.log('response is: ', response);
+        // after the console.log we can see that response carries 'secure_url' which we can use to update the state 
+        this.setState({ imageUrl: response.secure_url },
+          () => { console.log("THE STATE IS:", this.state) });
+      })
+      .catch(err => {
+        console.log("Error while uploading the file: ", err);
+      });
+  }
+
+  handleInputChange(e) {
     this.setState({
-      [event.target.name]: event.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -34,6 +57,7 @@ class Signup extends Component {
       username: this.state.username,
       password: this.state.password,
       email: this.state.email,
+      imageUrl: this.state.imageUrl,
       bio: this.state.bio,
       location: this.state.location,
       userType: this.state.userType,
@@ -46,31 +70,50 @@ class Signup extends Component {
       .then(result => {
         console.log('SUCCESSFULLY SIGNED UP!')
         this.props.checkLogin()
-        this.props.history.push('/') // Redirect to the home page
+        this.props.history.push('/login') // Redirect to the home page
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
 
-  getRandomPhoto = () => {
-    axios.get('http://localhost:5000/api/random-photo', { withCredentials: true })
+  // this method submits the form
+  handleSubmit = e => {
+    e.preventDefault();
+
+    service.saveNewThing(this.state)
       .then(res => {
-        let thePhoto = res.data.pic.urls.regular
-        this.setState({
-          profilePhoto: thePhoto
-        })
-      }).catch(err => console.log(err))
+        console.log('added: ', res);
+        // here you would redirect to some other page 
+      })
+      .catch(err => {
+        console.log("Error while adding the thing: ", err);
+      });
   }
 
-  fileSelectedHandler = (e) => {
-    console.log(e.target.files[0])
+  addPhotoForm = () => {
+    return (
+      <div>
+        <h2>New Thing</h2>
+        <form onSubmit={e => this.handleSubmit(e)}>
+          {/* <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={this.state.name}
+            onChange={e => this.handleInputChange(e)} />
+          <label>Description</label>
+          <textarea
+            type="text"
+            name="description"
+            value={this.state.description}
+            onChange={e => this.handleInputChange(e)} /> */}
+          <input
+            type="file"
+            onChange={(e) => this.handleFileUpload(e)} />
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    )
   }
-
-  fileUploadHandler = (e) => {
-    this.setState({
-      artwork: e.tartget.files[0]
-    })
-  }
-
 
   displaySignup = () => {
     return (
@@ -149,23 +192,7 @@ class Signup extends Component {
           </div>
         </div>
 
-        <div class="file has-name is-fullwidth">
-          <label class="file-label">
-            <input class="file-input" type="file" name="portfolio" onChange={this.fileSelectedHandler} />
-            <span class="file-cta">
-              <span class="file-icon">
-                <i class="fas fa-upload"></i>
-              </span>
-              <span class="file-label">
-                Choose a file…
-      </span>
-            </span>
-            <span class="file-name">
-              SomePhoto.png
-    </span>
-            <button onClick={e => this.fileUploadHandler}>Add</button>
-          </label>
-        </div>
+        {this.addPhotoForm()}
         <div className="field is-grouped">
           <div className="control">
             <button className="button is-link" onClick={e => this.handleClick(e)}>Submit</button>
@@ -185,7 +212,3 @@ class Signup extends Component {
 }
 
 export default Signup;
-
-
-//THIS IS THE VALUE FOR THE SELECTED TYPE OPTION
-// document.querySelector("#root > div > div > div > div:nth-child(5) > div > div > select").selectedOptions[0].innerHTML

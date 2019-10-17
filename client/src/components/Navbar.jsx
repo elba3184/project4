@@ -1,73 +1,89 @@
 import React, { Component } from 'react'
-// import { Route, Link, NavLink, Switch } from 'react-router-dom';
+import Profile from './pages/Profile'
+import People from './pages/People'
+import { BrowserRouter as Router, Switch, Route, Link, NavLink } from 'react-router-dom'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import api from '../api'
+import '../styling/navbar.scss'
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: null
+    }
+  }
+  componentDidMount() {
+    this.checkLogin()
+  }
+
+  checkLogin = () => {
+    api.checkLogin().then(user => {
+      console.log("the user", user)
+      this.setState({ user })
+    })
+  }
+
+  handleLogoutClick(e) {
+    api.logout().then(this.checkLogin)
+  }
+
   render() {
     return (
-      <div>
-        <nav className="navbar" role="navigation" aria-label="main navigation">
-          <div className="navbar-brand">
-            <a className="navbar-item" href="https://bulma.io">
-              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
-            </a>
-
-            <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a>
-          </div>
-
-          <div id="navbarBasicExample" className="navbar-menu">
-            <div className="navbar-start">
-              <a className="navbar-item">
-                Home
-      </a>
-
-              <a className="navbar-item">
-                Documentation
-      </a>
-
-              <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">
-                  More
-        </a>
-
-                <div className="navbar-dropdown">
-                  <a className="navbar-item">
-                    About
-          </a>
-                  <a className="navbar-item">
-                    Jobs
-          </a>
-                  <a className="navbar-item">
-                    Contact
-          </a>
-                  <hr className="navbar-divider" />
-                  <a className="navbar-item">
-                    Report an issue
-          </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="navbar-end">
-              <div className="navbar-item">
-                <div className="buttons">
-                  <a className="button is-primary">
-                    <strong>Sign up</strong>
-                  </a>
-                  <a className="button is-light">
-                    Log in
-          </a>
-                </div>
-              </div>
-            </div>
+      <React.Fragment>
+        <nav className="navbar navbar-expand-lg fixed-top">
+          <Link className="navbar-brand" to="/">
+            <img src="../images/logo.png" width="112" height="28" />
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul className="navbar-nav">
+              {!api.isLoggedIn() && <Link className="nav-link" to="/signup">
+                <li className="nav-item active">Create an Account</li>
+              </Link>}
+              {!api.isLoggedIn() && <Link className="nav-link" to="/login">
+                <li className="nav-item">Login</li>
+              </Link>}
+              {api.isLoggedIn() && <Link className="nav-link" to="/allUsers">
+                <li className="nav-item active">Match</li>
+              </Link>}
+              {api.isLoggedIn() && <Link className="nav-link" to="/profile">
+                <li className="nav-item active">Profile</li>
+              </Link>}
+              {api.isLoggedIn() && <Link className="nav-link" to="/" onClick={e => this.handleLogoutClick(e)}>
+                <li className="nav-item active">Logout</li>
+              </Link>}
+            </ul>
           </div>
         </nav>
-      </div>
+
+        <Switch>
+          <Route path="/" exact component={(props) => <Home {...props} />} />
+          <Route path="/signup" component={(props) => <Signup checkLogin={this.checkLogin} {...props} />} />
+          <Route path="/login" component={(props) => < Login checkLogin={this.checkLogin} {...props} />} />
+          <Route path="/profile" component={(props) => < Profile checkLogin={this.checkLogin} {...props} />} />
+          <Route path="/allUsers" component={(props) => < People {...props} />} />
+          <Route render={() => <h2>404</h2>} />
+        </Switch>
+
+
+      </React.Fragment>
+
     )
   }
 }
 
 export default Navbar;
+

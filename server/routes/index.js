@@ -20,20 +20,25 @@ router.get('/secret', isLoggedIn, (req, res, next) => {
   })
 })
 
-router.get('/random-photo', (req, res, next) => {
-  console.log('random', req.user)
-  axios.get(`https://api.unsplash.com/photos/random/?client_id=${process.env.UNSPLASH_ACCESSKEY}`)
-    .then((response) => {
-      // console.log("RANDOM PHOTO INFO: ", response)
-      res.json({
-        pic: response.data
-      })
-    }).catch(err => next(err))
-})
+// router.get('/random-photo', (req, res, next) => {
+//   console.log('random', req.user)
+//   axios.get(`https://api.unsplash.com/photos/random/?client_id=${process.env.UNSPLASH_ACCESSKEY}`)
+//     .then((response) => {
+//       // console.log("RANDOM PHOTO INFO: ", response)
+//       res.json({
+//         pic: response.data
+//       })
+//     }).catch(err => next(err))
+// })
+
+// router.get('/fileUpload', (req, res, next) => {
+//   console.log("hello")
+// }).catch(err => next(err))
+
 
 
 router.get('/allUsers', (req, res, next) => {
-  console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===--=-=')
+  // console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===--=-=')
   //res.json({ wtf: '!!!' })
   User.find().then(allUsersFromDB => {
     res.json({ allUsersFromDB })

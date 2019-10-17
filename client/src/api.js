@@ -1,15 +1,16 @@
 import axios from 'axios'
+import { log } from 'util'
 // import Unsplash from 'unsplash-js';
 const path = require('path')
 require('dotenv').config({
   path: path.join(__dirname, '.env')
 })
 
-
-
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ?
-    '/api' : 'http://localhost:5000/api',
+    '/api'
+    : 'http://localhost:5000/api',
+
   withCredentials: true,
 })
 
@@ -56,7 +57,20 @@ export default {
       .catch(errHandler)
   },
 
+  // edit(userInfo) {
+  //   return service
+  //     .post('/edit-user', userInfo)
+  //     .then(res => {
+  //       // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
+  //       localStorage.setItem('user', JSON.stringify(res.data))
+  //       return res.data
+  //     })
+  //     .catch(errHandler)
+  // },
+
   login(username, password) {
+    console.log("the log in --- ", username, password);
+
     return service
       .post('/login', {
         username,
@@ -94,4 +108,20 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+  handleUpload(theFile) {
+    // console.log('file in service: ', theFile)
+    return service.post('/upload', theFile)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  saveNewThing(newThing) {
+    // console.log('new thing is: ', newThing)
+    return service.post('/create-image', newThing)
+      .then(res => res.data)
+      .catch(errHandler);
+  }
+
 }
+
+console.log("IN PROCESS.ENV", process.env)

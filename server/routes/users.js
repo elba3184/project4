@@ -32,6 +32,14 @@ router.get('/unsplash', (req, res, next) => {
 
 })
 
+router.get('/matched', (req, res, next) => {
+  User.findById(req.body.id).then((user) => {
+    return user.follow(req.body.user_id).then(() => {
+      return res.json({ msg: "followed" })
+    })
+  }).catch(next)
+})
+
 
 router.get('/profile/:id', (req, res, next) => {
   let id = req.params.id
@@ -39,10 +47,11 @@ router.get('/profile/:id', (req, res, next) => {
     res.json({ user })
   }).catch(err => console.error(err))
 })
+
 // router.get('/edit-user', (req, res, next) => {
 //     .then((response) => {
-//       res.json(response.data)
-//     }).catch(err => next(err))
+//   res.json(response.data)
+// }).catch(err => next(err))
 // })
 
 module.exports = router;
