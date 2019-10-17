@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import Carousel from 'react-bootstrap/Carousel'
+// import Carousel from 'react-bootstrap/Carousel'
 import Chat from './Chat';
 import '../../styling/index.scss'
 // import serverUrl from '../../configServer'
@@ -19,7 +19,7 @@ class People extends Component {
   }
 
   showSpecificUser = () => {
-  
+
   }
 
   showAllUsers = () => {
