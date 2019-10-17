@@ -21,6 +21,8 @@ $ cd <my-project>
 $ rm -rf .git
 $ git init
 
+#    // "start": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+
 # Set your GitHub repository as the "origin" remote repository
 $ git remote add origin <https://github.com/user/my-project.git>
 ```
