@@ -5,6 +5,34 @@
 //#C1C8E4
 //#8860D0
 
+
+//===========app.jsx=============//
+
+
+// //import socketIOClient from "socket.io-client";
+// class App extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       response: false,
+//       endpoint: "http://127.0.0.1:5000"
+//     };
+//   }
+// componentDidMount() {
+//   const { endpoint } = this.state;
+//   const socket = socketIOClient(endpoint);
+//   socket.emit('chat message', { please: 'this sorta works, right?' })
+//   socket.on("received", data => {
+//     console.log(data)
+//     this.setState({ response: data });
+//   })
+// }
+//==========app.jsx==============//
+
+
+
+
+
 //=======Fileupload-route.js=====//
 // if (!req.file) {
 //   next(new Error('No file uploaded!'));
