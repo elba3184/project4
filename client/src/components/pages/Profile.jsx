@@ -73,10 +73,10 @@ class Profile extends Component {
   showCard = () => {
     return (
       <div className="profile-card">
-      <div className="profile-info">
+        <div className="profile-info">
 
 
-        <div class="col-md-4">
+          {/* <div class="col-md-4">
           <div class="card profile-card-3">
             <div class="background-block">
               <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background" />
@@ -90,13 +90,13 @@ class Profile extends Component {
             </div>
           </div>
           <p class="mt-3 w-100 float-left text-center"><strong>Modren Profile Card</strong></p>
+        </div> */}
+          <img src={this.state.imageUrl} />
+          <h1>Name: {this.state.first_name} {this.state.last_name}</h1>
+          <h1>username: {this.state.username}</h1>
+          <p>{this.state.bio}</p>
+          <p>I'm a {this.state.userType}</p>
         </div>
-        <img src={this.state.imageUrl} />
-        <h1>Name: {this.state.first_name} {this.state.last_name}</h1>
-        <h1>username: {this.state.username}</h1>
-        <p>{this.state.bio}</p>
-        <p>I'm a {this.state.userType}</p>
-      </div>
         {/* 
         <Modal
           closeModal={this.toggleModal}
