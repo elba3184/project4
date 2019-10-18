@@ -17,13 +17,23 @@ class Home extends Component {
              </p>
             <br />
             <p>Start by </p>
-            <button className="btn1"><span><a href="/signup">Creating an account</a></span></button>
+            <button className="btn1"><span><a href="/signup" className="in-home">Creating an account</a></span></button>
           </div>
           <br />
         </div>
-        <div className="home-examples">
+        {/* <div className="home-examples">
           <div className="home-example1">
-            <p>Shemar Anthony</p>
+            <strong><p>Shemar Anthony</p></strong>
+            <img src="https://res.cloudinary.com/elbachimilio/image/upload/v1571396955/aesthetic/flwlgxjmlznwcces7iaj.png"></img>
+
+            <small><p>Photograpger</p></small>
+            <p>I'm a part-time photographer looking for
+              models that are willing to get creative
+               with their work. I also need a makeup
+               stylist ready to work with bold colors.
+               Check out my published work:
+               https://www.oceanafrica.io/articles/shemar-anthony-black-is-gold.
+               P.S. I hate Mondays.</p>
           </div>
           <div className="home-example2">
             <p>Brianna McAuliffe</p>
@@ -31,7 +41,7 @@ class Home extends Component {
           <div className="home-example3">
             <p>Elba Chimilio</p>
           </div>
-        </div>
+        </div> */}
       </div>
 
     )

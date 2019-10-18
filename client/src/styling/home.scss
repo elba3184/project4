@@ -71,6 +71,14 @@
     text-align: justify;
   }
 
+  .in-home:hover {
+    color: #525252;
+  }
+
+  .home-example1 p{
+    font-size: 20pt;
+  }
+
   p {
     // font-family: Muli;
     justify-content: center;
@@ -100,19 +108,19 @@
 
   .home-examples {
     margin: 100px 80px 40px 70px;
-    color:#333333;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+  }
+  .home-example1, .home-example2, .home-example3 {
+    border: 2px solid red;
+    margin-right: 35px;
+    margin-left: 35px;
+    width: 250px;
   }
   .home-example1 p, .home-example2 p, .home-example3 p{
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     color:#333333;
     width: 150px;
     height: 220px;
-    font-size: 20pt;
+    font-size: 10pt;
   }
 }
