@@ -36,7 +36,7 @@ class Navbar extends Component {
       <React.Fragment>
         <nav className="navbar navbar-expand-lg fixed-top">
           <Link className="navbar-brand" to="/">
-            <img src="../images/logo.png" width="112" height="28" />
+            <img src="../images/logo.png" width="112" height="28" margin-left="30px" />
           </Link>
           <button
             className="navbar-toggler"
@@ -60,28 +60,25 @@ class Navbar extends Component {
               {api.isLoggedIn() && <Link className="nav-link" to="/allUsers">
                 <li className="nav-item active">All Users</li>
               </Link>}
-              {api.isLoggedIn() && <Link className="nav-link" to="/allUsers">
-                <li className="nav-item active">Match Profile</li>
-              </Link>}
               {api.isLoggedIn() && <Link className="nav-link" to="/profile">
-              <li className="nav-item active">Profile</li>
-            </Link>}
-            {api.isLoggedIn() && <Link className="nav-link" to="/" onClick={e => this.handleLogoutClick(e)}>
-              <li className="nav-item active">Logout</li>
-            </Link>}
+                <li className="nav-item active">Profile</li>
+              </Link>}
+              {api.isLoggedIn() && <Link className="nav-link" to="/" onClick={e => this.handleLogoutClick(e)}>
+                <li className="nav-item active">Logout</li>
+              </Link>}
             </ul>
           </div>
         </nav>
 
-      <Switch>
-        <Route path="/" exact component={(props) => <Home {...props} />} />
-        <Route path="/signup" component={(props) => <Signup checkLogin={this.checkLogin} {...props} />} />
-        <Route path="/login" component={(props) => < Login checkLogin={this.checkLogin} {...props} />} />
-        <Route path="/profile" component={(props) => < Profile checkLogin={this.checkLogin} {...props} />} />
-        <Route path="/allUsers" component={(props) => < People {...props} />} />
-        <Route path="/match" component={(props) => < Match {...props} />} />
-        <Route render={() => <h2>404</h2>} />
-      </Switch>
+        <Switch>
+          <Route path="/" exact component={(props) => <Home {...props} />} />
+          <Route path="/signup" component={(props) => <Signup checkLogin={this.checkLogin} {...props} />} />
+          <Route path="/login" component={(props) => < Login checkLogin={this.checkLogin} {...props} />} />
+          <Route path="/profile" component={(props) => < Profile checkLogin={this.checkLogin} {...props} />} />
+          <Route path="/allUsers" component={(props) => < People {...props} />} />
+          <Route path="/match" component={(props) => < Match {...props} />} />
+          <Route render={() => <h2>404</h2>} />
+        </Switch>
 
 
       </React.Fragment >

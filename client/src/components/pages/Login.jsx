@@ -87,7 +87,7 @@ export default class Login extends Component {
 						</span>
 
                     <Link className="nav-link" to="/signup">
-                      <li className="nav-item">Create an account</li>
+                      <li className="create-account">Create an account</li>
                     </Link>
                   </div>
                 </form>

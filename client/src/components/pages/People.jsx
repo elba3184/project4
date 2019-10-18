@@ -85,9 +85,9 @@ class People extends Component {
                 <p> {eachUser.email} </p>
                 <p>{eachUser.userType} </p>
                 <p>{eachUser.bio}</p>
-                <Link to='/' ><button className="match">Nope</button></Link>
+                <button className="match">Nope</button>
                 <br />
-                <Link to='/' ><button className="match">Dope</button></Link>
+                <button className="match">Dope</button>
 
               </div>
             </div>

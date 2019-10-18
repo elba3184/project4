@@ -1,4 +1,29 @@
+/* ==========================================================================
+   #FONT
+   ========================================================================== */
 
+   @font-face {
+    font-family: Poppins-Regular;
+    src: font-url('/fonts/poppins/Poppins-Regular.ttf'); 
+    // src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+  }
+  
+  @font-face {
+    font-family: Poppins-Medium;
+    src: font-url('/fonts/poppins/Poppins-Medium.ttf'); 
+  }
+  
+  @font-face {
+    font-family: Poppins-Bold;
+    src: font-url('/fonts/poppins/Poppins-Bold.ttf'); 
+  }
+  
+  @font-face {
+    font-family: Poppins-SemiBold;
+    src: font-url('/fonts/poppins/Poppins-SemiBold.ttf'); 
+  }
+  
+  
 // --------------------
 // Style for Home component
 // 
@@ -16,7 +41,10 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-color: rgba(183, 134, 223, 0.472);
+    background-color: rgba(183, 134, 223, 0.3);
+    height: 641px;
+
+
   }
   
   body {
@@ -26,29 +54,63 @@
   }
 
   h1 {
-    margin: 0px 10px 20px 10px;
+    margin: 0px 10px 40px 10px;
     justify-content: center;
-    font-size: 4em;
-    padding: 50px;
+    font-size: 5em;
+    padding: 140px 60px 40px;
     color: white;
+    font-family: Poppins-Medium;
+    // font-family: Poppins-Medium;
+  }
+
+  .home-head {
+    justify-content: center;
+    font-size: 18px;
+    color: white;
+    padding-bottom: 15px;
+    text-align: justify;
   }
 
   p {
     // font-family: Muli;
     justify-content: center;
-    font-size: 2em;
+    font-size: 1.5em;
     color: white;
+    margin: 0px 190px 20px;
+  }
+
+  .btn1 {
+    background: #D45FFF;
+    // border: none;
+    color: white;
+    // padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 40px;
+    height: 50px;
+    width: 210px;
+  }
+
+  .btn1 span {
+    padding: 15px;
   }
 
   .home-examples {
     margin: 100px 80px 40px 70px;
+    color:#333333;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
-  .home-examples p{
+  .home-example1 p, .home-example2 p, .home-example3 p{
     justify-content: center;
-    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color:#333333;
     width: 150px;
     height: 220px;
     font-size: 20pt;
