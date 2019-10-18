@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import api from '../../api'
 import axios from 'axios'
 import service from '../../api';
-// import '../../styling/signup.scss'
+import '../../styling/signup.scss'
 
 class Signup extends Component {
   constructor(props) {
