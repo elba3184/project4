@@ -85,12 +85,14 @@ class People extends Component {
                 <p> {eachUser.email} </p>
                 <p>{eachUser.userType} </p>
                 <p>{eachUser.bio}</p>
-                <button className="match">Nope</button>
+                
+                <button className="match"><span><a href="/" className="match">Nope</a></span></button>
                 <br />
-                <button className="match">Dope</button>
+                <button className="match"><span><a href="/" className="match">Definitely!</a></span></button>
 
               </div>
             </div>
+            
 
 
           </article>
@@ -104,7 +106,9 @@ class People extends Component {
   showUserCards = () => {
     return (
       <div>
+        <div className="all-users">
         <p><li>{this.showEachUser()}</li></p>
+        </div>
       </div>
     )
   }
@@ -112,7 +116,7 @@ class People extends Component {
   render() {
     return (
       <div>
-        In People component
+       <p className="people-title">Aesthetic Users</p>
         {this.showUserCards()}
 
         <Chat />
