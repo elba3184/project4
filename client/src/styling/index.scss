@@ -82,8 +82,10 @@ body {
 .people-stuff .all-users li{
   display: flex;
   flex-direction: row;
-  margin-right: 10pz;
-  padding-right: 10px;
+  flex-wrap: wrap;
+  margin-right: 5px;
+  padding-right: 5px;
+
   justify-content: space-between;
 }
 
