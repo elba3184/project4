@@ -115,7 +115,7 @@ class People extends Component {
 
   render() {
     return (
-      <div>
+      <div class="people-stuff">
        <p className="people-title">Aesthetic Users</p>
         {this.showUserCards()}
 

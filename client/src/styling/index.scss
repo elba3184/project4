@@ -79,7 +79,7 @@ body {
 }
 
 
-.all-users li{
+.people-stuff .all-users li{
   display: flex;
   flex-direction: row;
   margin-right: 10pz;
@@ -88,17 +88,17 @@ body {
 }
 
 
-.people-title {
+.people-stuff .people-title {
   font-size: 40px;
 }
 
-.box {
+.people-stuff .box {
   width: 500px;
   height: 400px;
   margin: 100px;
 }
 
-.match {
+.people-stuff .match {
   background: rgb(31, 165, 218);
   // border: none;
   color: white;
@@ -113,6 +113,6 @@ body {
   width: 210px;
 }
 
-.match span {
+.people-stuff .match span {
   padding: 15px;
 }
