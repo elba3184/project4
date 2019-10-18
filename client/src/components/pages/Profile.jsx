@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import api from '../../api';
-import '../../styling/index.scss'
+import '../../styling/profile.scss'
 import Modal from './Modal'
 // import { runInNewContext } from 'vm';
 import serverUrl from '../../configServer'
