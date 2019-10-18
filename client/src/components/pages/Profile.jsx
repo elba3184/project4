@@ -96,12 +96,12 @@ class Profile extends Component {
           <h1>username: {this.state.username}</h1>
           <p>{this.state.bio}</p>
           <p>I'm a {this.state.userType}</p>
-          <img src="../images/img1.jpg" />
-          <img src="../images/img2.jpg" />
-          <img src="../images/img3.jpg" />
-          <img src="../images/img4.jpg" />
-          <img src="../images/img5.jpg" />
-          <img src="../images/img6.jpg" />
+          <img src="/images/img1.jpg" />
+          <img src="/images/img2.jpg" />
+          <img src="/images/img3.jpg" />
+          <img src="/images/img4.jpg" />
+          <img src="/images/img5.jpg" />
+          <img src="/images/img6.jpg" />
         </div>
         {/* 
         <Modal
