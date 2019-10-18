@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import api from '../../api'
 import '../../styling/login.scss'
 import { Link } from 'react-router-dom'
+
 export default class Login extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
@@ -34,59 +36,64 @@ export default class Login extends Component {
   render() {
     return (
       <div className="limiter">
-        <div className="container-login100">
-          {/* style="background-image: url('images/bg-01.jpg'); */}
-          <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-            <form className="login100-form validate-form">
-              <span className="login100-form-title p-b-49">
-                Login
+        <div className="wrap-login100">
+          {/* <div className="login-card"> */}
+          <div className="container-login100">
+            <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+              <div className="whole-login">
+                <form className="login100-form validate-form">
+                  <span className="login100-form-title p-b-49">
+                    Login
 					</span>
 
-              <div className="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
-                <span className="label-input100">Username</span>
-                <input className="input100" type="text" type="text"
-                  value={this.state.username}
-                  name="username"
-                  onChange={this.handleInputChange}
-                  placeholder="Username" />
-                <span className="focus-input100" data-symbol="&#xf206;"></span>
-              </div>
+                  <div className="wrap-input100 validate-input m-b-23" data-validate="Username is required">
+                    <span className="label-input100">Username</span>
+                    <input className="input100" type="text" type="text"
+                      value={this.state.username}
+                      name="username"
+                      onChange={this.handleInputChange}
+                      placeholder="Username" />
+                    <span className="focus-input100" data-symbol="&#xf206;"></span>
+                  </div>
 
-              <div className="wrap-input100 validate-input" data-validate="Password is required">
-                <span className="label-input100">Password</span>
-                <input className="input100" type="password" type="password"
-                  value={this.state.password}
-                  name="password"
-                  onChange={this.handleInputChange}
-                  placeholder="********" />
-                <span className="focus-input100" data-symbol="&#xf190;"></span>
-              </div>
+                  <div className="wrap-input100 validate-input" data-validate="Password is required">
+                    <span className="label-input100">Password</span>
+                    <input className="input100" type="password" type="password"
+                      value={this.state.password}
+                      name="password"
+                      onChange={this.handleInputChange}
+                      placeholder="********" />
+                    <span className="focus-input100" data-symbol="&#xf190;"></span>
+                  </div>
 
-              <div className="text-right p-t-8 p-b-31">
-                <a href="#">
-                  Forgot password?
+                  <div className="text-right p-t-8 p-b-31">
+                    <a href="#">
+                      Forgot password?
 						</a>
-              </div>
+                  </div>
 
-              <div className="container-login100-form-btn">
-                <div className="wrap-login100-form-btn">
-                  <div className="login100-form-bgbtn"></div>
-                  <button className="login100-form-btn" onClick={e => this.handleClick(e)}>
-                    Login
+                  <div className="container-login100-form-btn">
+                    <div className="wrap-login100-form-btn">
+                      <div className="login100-form-bgbtn"></div>
+                      <button className="login100-form-btn" onClick={e => this.handleClick(e)}>
+                        Login
 							</button>
-                </div>
-              </div>
+                    </div>
+                  </div>
 
-              <div className="flex-col-c p-t-155">
-                <span className="txt1 p-b-17">
-                  Or
+                  <div className="flex-col-c p-t-155">
+                    <span className="txt1 p-b-17">
+                      Or
 						</span>
 
-                <Link className="nav-link" to="/signup">
-                  <li className="nav-item">Create an account</li>
-                </Link>
+                    <Link className="nav-link" to="/signup">
+                      <li className="nav-item">Create an account</li>
+                    </Link>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
+            {/* </div> */}
           </div>
         </div>
       </div>

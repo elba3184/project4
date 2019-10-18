@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { log } from 'util'
-// import serverUrl from 'configServer'
+import serverUrl from '../src/configServer'
 // import Unsplash from 'unsplash-js';
 const path = require('path')
 require('dotenv').config({
@@ -10,7 +10,7 @@ require('dotenv').config({
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ?
     '/api'
-    : `localhost:5000/api`,
+    : `${serverUrl}`,
 
   withCredentials: true,
 })
@@ -96,6 +96,7 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+  
 
   addPicture(file) {
     const formData = new FormData()

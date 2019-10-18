@@ -2,17 +2,40 @@
 // Definition of variables
 // $primary: #32c3ff;
 // ----------------------------------------
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('/fonts/poppins/Poppins-Regular.ttf'); 
+  // src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+}
 
+@font-face {
+  font-family: Poppins-Medium;
+  src: url('/fonts/poppins/Poppins-Medium.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('/fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-SemiBold;
+  src: url('/fonts/poppins/Poppins-SemiBold.ttf'); 
+}
 // ----------------------------------------
 
-
+.App .navbar.navbar-expand-lg.fixed-top{
+  color: white;
+  background: transparent;
+}
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  // font-family: sans-serif;
   height: 100vh;
   width: 100vw
 }
+
 
 .match {
   background: rgb(146, 228, 196);
@@ -79,17 +102,22 @@ body {
 .App {
   text-align: center;
   a {
-    color: black;
+    color: white;
+    font-family: Poppins-Bold;
   }
-  // .whole-page{
-  // }
+
 }
 
-.App-header .navbar {
-  height: 0px;
-  background: transparent;
-  color: black;
-  font-size: 20pt;
-  padding: 0;
+
+.navbar{
+  position: absolute !important;
+  color: white !important;
 }
+
+.nav-link a{
+  color: purple;
+}
+
+
+
 

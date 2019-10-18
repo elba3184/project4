@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import api from '../../api'
 import axios from 'axios'
 import service from '../../api';
+import '../../styling/signup.scss'
 
 class Signup extends Component {
   constructor(props) {
@@ -92,24 +93,16 @@ class Signup extends Component {
   addPhotoForm = () => {
     return (
       <div>
-        <h2>New Thing</h2>
+        <h2>Upload Profile Photo</h2>
         <form onSubmit={e => this.handleSubmit(e)}>
-          {/* <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={e => this.handleInputChange(e)} />
-          <label>Description</label>
-          <textarea
-            type="text"
-            name="description"
-            value={this.state.description}
-            onChange={e => this.handleInputChange(e)} /> */}
-          <input
-            type="file"
-            onChange={(e) => this.handleFileUpload(e)} />
-          <button type="submit">Save</button>
+
+          <div className="p-t-15">
+
+            <input
+              type="file"
+              onChange={(e) => this.handleFileUpload(e)} />
+            <button type="submit">Upload</button>
+          </div>
         </form>
       </div>
     )
@@ -118,87 +111,78 @@ class Signup extends Component {
   displaySignup = () => {
     return (
       <div>
-        <div className="field">
-          <label className="label">First name</label>
-          <div className="control">
-            <input className="input" type="text" name="first_name" placeholder="Ex. Elba" value={this.state.first_name} onChange={e => this.handleInputChange(e)} />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Last name</label>
-          <div className="control">
-            <input className="input" type="text" name="last_name" placeholder="Ex. Chimilio" value={this.state.last_name} onChange={e => this.handleInputChange(e)} />
-          </div>
-        </div>
+        <div className="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+          <div className="wrapper wrapper--w680">
+            <div className="card card-4">
+              <div className="card-body">
+                <h2 className="title">Create an Account</h2>
+                <form method="POST">
+                  <div className="row row-space">
+                    <div className="col-2">
+                      <div className="input-group">
+                        <label className="label">first name</label>
+                        <input className="input" type="text" name="first_name" placeholder="Ex. Elba" value={this.state.first_name} onChange={e => this.handleInputChange(e)} />
+                      </div>
+                    </div>
+                    <div className="col-2">
+                      <div className="input-group">
+                        <label className="label">last name</label>
+                        <input className="input" type="text" name="last_name" placeholder="Ex. Chimilio" value={this.state.last_name} onChange={e => this.handleInputChange(e)} />
+                      </div>
+                    </div>
+                  </div>
 
-        <div className="field">
-          <label className="label">Username</label>
-          <div className="control has-icons-left has-icons-right">
-            <input className="input is-success" type="text" name="username" placeholder="Ex. elbachimilio" value={this.state.username} onChange={e => this.handleInputChange(e)} />
-            <span className="icon is-small is-left">
-              <i className="fas fa-user"></i>
-            </span>
-            <span className="icon is-small is-right">
-              <i className="fas fa-check"></i>
-            </span>
-          </div>
-          <p className="help is-success">This username is available</p>
-        </div>
+                  <div className="col-2">
+                    <div className="input-group">
+                      <label className="label">username</label>
+                      <input className="input" type="text" name="username" placeholder="Ex. elbachimilio" value={this.state.username} onChange={e => this.handleInputChange(e)} />
+                    </div>
+                  </div>
 
-        <div className="field">
-          <label className="label">Password</label>
-          <div className="control has-icons-left has-icons-right">
-            <input className="input is-success" type="password" name="password" value={this.state.password} onChange={e => this.handleInputChange(e)} />
-            <span className="icon is-small is-left">
-              <i className="fas fa-user"></i>
-            </span>
-            <span className="icon is-small is-right">
-              <i className="fas fa-check"></i>
-            </span>
-          </div>
-        </div>
+                  <div className="col-2">
+                    <div className="input-group">
+                      <label className="label">password</label>
+                      <input className="input" type="password" name="password" placeholder="***********" value={this.state.password} onChange={e => this.handleInputChange(e)} />
+                    </div>
+                  </div>
 
-        <div className="field">
-          <label className="label">Email</label>
-          <div className="control has-icons-left has-icons-right">
-            <input className="input is-danger" type="email" name="email" placeholder="Ex. elbachimilio@gmail.com" value={this.state.email} onChange={e => this.handleInputChange(e)} />
-            <span className="icon is-small is-left">
-              <i className="fas fa-envelope"></i>
-            </span>
-            <span className="icon is-small is-right">
-              <i className="fas fa-exclamation-triangle"></i>
-            </span>
-          </div>
-          <p className="help is-danger">This email is invalid</p>
-        </div>
+                  <div className="row row-space">
+                    <div className="col-2">
+                      <div className="input-group">
+                        <label className="label">Email</label>
+                        <input className="input" type="email" name="email" placeholder="Ex. elbachimilio@gmail.com" value={this.state.email} onChange={e => this.handleInputChange(e)} />
+                      </div>
+                    </div>
 
-        <div className="field">
-          <label className="label">Type of Artist</label>
-          <div className="control">
-            <div className="select">
-              <select onChange={(e) => this.setState({ userType: e.target.value })} value={this.state.userType}>
-                <option>Photographer</option>
-                <option>Model</option>
-                <option>Stylist</option>
-              </select>
+                  </div>
+                  <div className="input-group">
+                    <label className="label">Profession   </label>
+                    <div className="rs-select2 js-select-simple select--no-search">
+                      <select onChange={(e) => this.setState({ userType: e.target.value })} value={this.state.userType}>
+                        <option>Photographer</option>
+                        <option>Model</option>
+                        <option>Stylist</option>
+                      </select>
+                      <div className="select-dropdown"></div>
+                    </div>
+                  </div>
+                  <div className="col-2">
+                    <div className="input-group">
+                      <label className="label">Bio</label>
+                      <textarea className="textarea" value="bio" name="bio" placeholder="This is an amazing website. Good job Elba! You are so cool! " value={this.state.bio} onChange={e => this.handleInputChange(e)}></textarea>
+                    </div>
+                  </div>
+                  {this.addPhotoForm()}
+                  <div className="p-t-15">
+                    <button className="button is-link" onClick={e => this.handleClick(e)}>Sign  up</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="field">
-          <label className="label">Bio</label>
-          <div className="control">
-            <textarea className="textarea" value="bio" name="bio" placeholder="This is an amazing website. Good job Elba! You are so cool! " value={this.state.bio} onChange={e => this.handleInputChange(e)}></textarea>
-          </div>
-        </div>
-
-        {this.addPhotoForm()}
-        <div className="field is-grouped">
-          <div className="control">
-            <button className="button is-link" onClick={e => this.handleClick(e)}>Submit</button>
-          </div>
-        </div>
-      </div >
     )
   }
 
@@ -212,3 +196,88 @@ class Signup extends Component {
 }
 
 export default Signup;
+
+
+
+{/* <div>
+<div className="field">
+  <label className="label">First name</label>
+  <div className="control">
+    <input className="input" type="text" name="first_name" placeholder="Ex. Elba" value={this.state.first_name} onChange={e => this.handleInputChange(e)} />
+  </div>
+</div>
+<div className="field">
+  <label className="label">Last name</label>
+  <div className="control">
+    <input className="input" type="text" name="last_name" placeholder="Ex. Chimilio" value={this.state.last_name} onChange={e => this.handleInputChange(e)} />
+  </div>
+</div>
+
+<div className="field">
+  <label className="label">Username</label>
+  <div className="control has-icons-left has-icons-right">
+    <input className="input is-success" type="text" name="username" placeholder="Ex. elbachimilio" value={this.state.username} onChange={e => this.handleInputChange(e)} />
+    <span className="icon is-small is-left">
+      <i className="fas fa-user"></i>
+    </span>
+    <span className="icon is-small is-right">
+      <i className="fas fa-check"></i>
+    </span>
+  </div>
+  <p className="help is-success">This username is available</p>
+</div>
+
+<div className="field">
+  <label className="label">Password</label>
+  <div className="control has-icons-left has-icons-right">
+    <input className="input is-success" type="password" name="password" value={this.state.password} onChange={e => this.handleInputChange(e)} />
+    <span className="icon is-small is-left">
+      <i className="fas fa-user"></i>
+    </span>
+    <span className="icon is-small is-right">
+      <i className="fas fa-check"></i>
+    </span>
+  </div>
+</div>
+
+<div className="field">
+  <label className="label">Email</label>
+  <div className="control has-icons-left has-icons-right">
+    <input className="input is-danger" type="email" name="email" placeholder="Ex. elbachimilio@gmail.com" value={this.state.email} onChange={e => this.handleInputChange(e)} />
+    <span className="icon is-small is-left">
+      <i className="fas fa-envelope"></i>
+    </span>
+    <span className="icon is-small is-right">
+      <i className="fas fa-exclamation-triangle"></i>
+    </span>
+  </div>
+  <p className="help is-danger">This email is invalid</p>
+</div>
+
+<div className="field">
+  <label className="label">Type of Artist</label>
+  <div className="control">
+    <div className="select">
+      <select onChange={(e) => this.setState({ userType: e.target.value })} value={this.state.userType}>
+        <option>Photographer</option>
+        <option>Model</option>
+        <option>Stylist</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div className="field">
+  <label className="label">Bio</label>
+  <div className="control">
+    <textarea className="textarea" value="bio" name="bio" placeholder="This is an amazing website. Good job Elba! You are so cool! " value={this.state.bio} onChange={e => this.handleInputChange(e)}></textarea>
+  </div>
+</div>
+
+{this.addPhotoForm()}
+<div className="field is-grouped">
+  <div className="control">
+    <button className="button is-link" onClick={e => this.handleClick(e)}>Submit</button>
+  </div>
+</div>
+</div > */}

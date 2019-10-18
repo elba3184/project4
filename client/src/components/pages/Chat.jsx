@@ -11,13 +11,13 @@ class Chat extends Component {
     super();
     this.state = {
       response: false,
-      messages: []
-      //endpoint: "http://127.0.0.1:5000"
+      messages: [],
+      endpoint: "http://127.0.0.1:5000"
     };
   }
   componentDidMount() {
-    //onst { endpoint } = this.state;
-    //const socket = socketIOClient(endpoint);
+    const { endpoint } = this.state;
+    const socket = socketIOClient(endpoint);
     console.log('mount')
     socket.removeListener('received')
     socket.on("received", data => {
@@ -33,7 +33,7 @@ class Chat extends Component {
 
   sendChat = (e) => {
     e.preventDefault()
-    //console.log("in chat - this is the state ====>", this.state)
+    console.log("in chat - this is the state ====>", this.state)
     socket.emit('chat message', { please: this.state.message })
     let messages = [...this.state.messages]
     messages.push(this.state.message)

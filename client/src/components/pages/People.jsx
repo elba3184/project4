@@ -9,7 +9,7 @@ class People extends Component {
 
   state = {
     allUsers: [],
-    currentUser: ''
+    currentUser: 0
   }
 
   componentDidMount() {
@@ -18,10 +18,43 @@ class People extends Component {
 
   }
 
-  showSpecificUser = () => {
-
+  clickUpdate = (e) => {
+    this.addMatched()
+    console.log("the event", e)
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
+  // addMatched = () => {
+  //   console.log("the event",e)
+  //   this.props.following.push({
+  //     userId: this.state.user._id
+  //   })
+  // }
+
+
+
+  getOneUser = (user) => {
+    let currentUser = user._id
+    axios.get(`${serverUrl}/matched:${currentUser}`)
+      .then(res => {
+        this.setState({
+          currentUser: 1
+        })
+      }).catch(err => console.log(err))
+  }
+
+  displayMatched = () => {
+    return (
+      <div>
+
+        <button className="like-button">
+          <a className="button" onClick={this.clickUpdate()}>Submit</a>
+        </button>
+      </div>
+    )
+  }
   showAllUsers = () => {
     axios.get(`${serverUrl}/allUsers`, { withCredentials: true })
       .then(res => {
@@ -71,10 +104,7 @@ class People extends Component {
   showUserCards = () => {
     return (
       <div>
-
         <p><li>{this.showEachUser()}</li></p>
-
-
       </div>
     )
   }
@@ -82,7 +112,7 @@ class People extends Component {
   render() {
     return (
       <div>
-        In People component???
+        In People component
         {this.showUserCards()}
 
         <Chat />
