@@ -17,5 +17,3 @@ mongoose
   .catch(err => {
     console.error('Error connecting to mongo', err)
   })
-
-//mongodb+srv://elba:elba@cluster0-w3igi.mongodb.net/aesthetic?retryWrites=true&w=majority
